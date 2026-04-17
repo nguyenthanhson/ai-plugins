@@ -1,0 +1,17 @@
+# Node
+node_modules/
+build/
+dist/
+*.js.map
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Env
+.env
+.env.local

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "words": [
+    "atlassian",
+    "blocklist",
+    "boardId",
+    "codeBlock",
+    "CODEOWNERS",
+    "Confluence",
+    "CQL",
+    "frontmatter",
+    "gitkeep",
+    "issuelinks",
+    "issueIdOrKey",
+    "JIRA",
+    "JQL",
+    "nguyenthanhson",
+    "pageId",
+    "semver",
+    "vitest"
+  ]
+}
