@@ -1,0 +1,22 @@
+{
+  "name": "playwright-typescript-code-review",
+  "version": "0.1.0",
+  "description": "Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. Returns structured local findings — never posts to GitHub.",
+  "author": {
+    "name": "Son Nguyen",
+    "url": "https://github.com/nguyenthanhson"
+  },
+  "homepage": "https://github.com/nguyenthanhson/ai-plugins/tree/main/plugins/playwright-typescript-code-review",
+  "repository": "https://github.com/nguyenthanhson/ai-plugins",
+  "keywords": ["playwright", "typescript", "code-review", "testing", "automation"],
+  "skills": [
+    "./skills/code-review",
+    "./skills/code-review-local",
+    "./skills/discovering-repo-standards",
+    "./skills/reviewing-playwright-typescript",
+    "./skills/classifying-review-findings",
+    "./skills/avoiding-false-positives",
+    "./skills/rendering-review-findings",
+    "./skills/rendering-review-summary"
+  ]
+}
