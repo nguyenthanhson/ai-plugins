@@ -1,0 +1,13 @@
+{
+  "name": "atlassian-tools",
+  "version": "2.2.3",
+  "description": "Read-only Atlassian access via MCP server with deep Jira issue research skill, JQL search, Confluence pages, CQL search, and attachments",
+  "author": {
+    "name": "Son Nguyen",
+    "url": "https://github.com/nguyenthanhson"
+  },
+  "homepage": "https://github.com/nguyenthanhson/ai-plugins/tree/main/plugins/atlassian-tools",
+  "repository": "https://github.com/nguyenthanhson/ai-plugins",
+  "keywords": ["atlassian", "jira", "confluence", "mcp", "read-only", "cql"],
+  "skills": ["./skills/researching-jira-issues"]
+}
