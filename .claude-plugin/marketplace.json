@@ -1,0 +1,26 @@
+{
+  "name": "nguyenthanhson-marketplace",
+  "owner": {
+    "name": "Son Nguyen",
+    "email": "nguyenthanhson@outlook.com"
+  },
+  "metadata": {
+    "description": "Personal Claude plugin collection for professional work",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "atlassian-tools",
+      "source": "./plugins/atlassian-tools",
+      "version": "2.2.3",
+      "description": "Read-only Atlassian access via MCP server with deep Jira issue research skill, JQL search, Confluence pages, CQL search, and attachments."
+    },
+    {
+      "name": "personal-software-engineer",
+      "source": "./plugins/personal-software-engineer",
+      "version": "0.1.0",
+      "description": "Personal software engineering skills collection."
+    }
+  ]
+}
