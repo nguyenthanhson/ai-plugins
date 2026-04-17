@@ -1,0 +1,17 @@
+{
+  "repository_conventions": [
+    {
+      "id": "doc-1",
+      "category": "waiting",
+      "summary": "Do not use waitForTimeout. Use Playwright auto-waiting via locator assertions instead.",
+      "source_type": "doc",
+      "sources": ["coding-standards.md"],
+      "confidence": "high",
+      "status": "observed"
+    }
+  ],
+  "nearby_context_files": {
+    "tests/checkout.spec.ts": ["fixtures/checkout.ts", "pages/CheckoutPage.ts"]
+  },
+  "discovery_budget_used": 2
+}

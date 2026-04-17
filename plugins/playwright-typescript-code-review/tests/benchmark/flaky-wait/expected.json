@@ -1,0 +1,69 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-04-17T00:00:00.000Z",
+    "repository_conventions": [
+      {
+        "id": "doc-1",
+        "category": "waiting",
+        "summary": "Do not use waitForTimeout. Use Playwright auto-waiting via locator assertions instead.",
+        "source_type": "doc",
+        "sources": ["coding-standards.md"],
+        "confidence": "high",
+        "status": "observed"
+      }
+    ],
+    "findings": [
+      {
+        "id": "f-1",
+        "title": "Hard sleep waitForTimeout(2000) before payment section assertion",
+        "severity": "high",
+        "confidence": "high",
+        "category": "reliability",
+        "location": {
+          "file": "tests/checkout.spec.ts",
+          "line": 19,
+          "end_line": 19
+        },
+        "evidence": {
+          "summary": "waitForTimeout(2000) added before asserting paymentSection visibility",
+          "diff_refs": ["+    await page.waitForTimeout(2000);"],
+          "convention_refs": ["doc-1"]
+        },
+        "why_it_matters": "waitForTimeout causes the test to sleep for a fixed duration regardless of actual page state. If the payment section loads slower than 2 seconds in CI, the test fails. If it loads faster, time is wasted. This masks the real issue: the assertion should retry automatically using Playwright's built-in waiting.",
+        "suggested_fix": "Remove waitForTimeout(2000). The following toBeVisible() assertion already auto-waits: `await expect(checkoutPage.paymentSection).toBeVisible();`",
+        "uncertainty_flags": []
+      },
+      {
+        "id": "f-2",
+        "title": "Hard sleep waitForTimeout(3000) before URL assertion",
+        "severity": "high",
+        "confidence": "high",
+        "category": "reliability",
+        "location": {
+          "file": "tests/checkout.spec.ts",
+          "line": 25,
+          "end_line": 25
+        },
+        "evidence": {
+          "summary": "waitForTimeout(3000) added before asserting confirmation page URL",
+          "diff_refs": ["+    await page.waitForTimeout(3000);"],
+          "convention_refs": ["doc-1"]
+        },
+        "why_it_matters": "Same issue as f-1. The URL assertion and heading assertion auto-wait — the fixed sleep is unnecessary and makes the test brittle on slow environments.",
+        "suggested_fix": "Remove waitForTimeout(3000). Use `await expect(page).toHaveURL('/confirmation');` directly — it retries until the URL matches or the timeout expires.",
+        "uncertainty_flags": []
+      }
+    ],
+    "summary": {
+      "top_risks": [
+        "tests/checkout.spec.ts introduces two waitForTimeout hard sleeps that will cause intermittent failures in slow CI environments and mask real page loading issues"
+      ],
+      "assumptions": [],
+      "uncertainties": []
+    }
+  }
+}
