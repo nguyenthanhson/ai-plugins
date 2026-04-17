@@ -54,6 +54,19 @@ claude plugin list
 
 You should see the installed plugins with their skill names.
 
+### OpenAI Codex CLI
+
+Follow the instructions in [`.codex/INSTALL.md`](./.codex/INSTALL.md).
+
+```bash
+git clone https://github.com/nguyenthanhson/ai-plugins.git ~/.codex/ai-plugins
+mkdir -p ~/.agents/skills
+ln -s ~/.codex/ai-plugins/plugins/atlassian-tools/skills ~/.agents/skills/atlassian-tools
+ln -s ~/.codex/ai-plugins/plugins/personal-software-engineer/skills ~/.agents/skills/personal-software-engineer
+```
+
+Restart Codex to discover the skills.
+
 ## Updating
 
 ### Via plugin marketplace
