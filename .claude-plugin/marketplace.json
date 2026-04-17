@@ -19,7 +19,7 @@
     {
       "name": "personal-software-engineer",
       "source": "./plugins/personal-software-engineer",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Personal software engineering skills collection."
     }
   ]

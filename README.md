@@ -18,7 +18,7 @@ claude plugin install personal-software-engineer
 | Plugin | Version | Description |
 | --- | --- | --- |
 | [atlassian-tools](./plugins/atlassian-tools) | 2.2.3 | Read-only Jira/Confluence access via MCP with deep issue research skill |
-| [personal-software-engineer](./plugins/personal-software-engineer) | 0.1.0 | Personal software engineering skills collection |
+| [personal-software-engineer](./plugins/personal-software-engineer) | 0.2.0 | Personal software engineering skills collection |
 
 ## Adding a Plugin
 

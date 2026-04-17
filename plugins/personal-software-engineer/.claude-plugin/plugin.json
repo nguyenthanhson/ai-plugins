@@ -1,6 +1,6 @@
 {
   "name": "personal-software-engineer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Personal software engineering skills for code review, debugging, and architecture.",
   "author": {
     "name": "Son Nguyen",
@@ -8,6 +8,9 @@
   },
   "homepage": "https://github.com/nguyenthanhson/ai-plugins/tree/main/plugins/personal-software-engineer",
   "repository": "https://github.com/nguyenthanhson/ai-plugins",
-  "keywords": ["software-engineering", "code-review", "debugging"],
-  "skills": []
+  "keywords": ["software-engineering", "code-review", "debugging", "ux", "design"],
+  "skills": [
+    "./skills/ux-expert",
+    "./skills/devils-advocate"
+  ]
 }
