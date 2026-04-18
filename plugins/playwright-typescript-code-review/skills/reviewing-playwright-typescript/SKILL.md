@@ -176,13 +176,19 @@ For each issue found, record:
   "title": "<one-line description of the specific issue>",
   "category": "reliability|maintainability|playwright-correctness|typescript-correctness|config",
   "raw_severity": "high|medium|low",
-  "file": "<file path from the diff>",
-  "line": <line number if identifiable from the diff, or null>,
-  "end_line": <end line if a range, or null>,
-  "diff_evidence": "<the specific diff lines that show the issue>",
-  "explanation": "<why this matters — specific risk or consequence>",
+  "location": {
+    "file": "<file path from the diff>",
+    "line": "<line number if identifiable from the diff, or null>",
+    "end_line": "<end line if a range, or null>"
+  },
+  "evidence": {
+    "summary": "<one sentence describing what the diff shows>",
+    "diff_refs": ["<specific diff line 1 that shows the issue>", "<diff line 2 if applicable>"],
+    "convention_refs": ["<convention id from discovery context if a convention applies, or empty array>"]
+  },
+  "why_it_matters": "<why this matters — specific risk or consequence>",
   "suggested_fix": "<specific code-level suggestion>",
-  "convention_refs": ["<convention id from discovery context if a convention applies, or empty array>"]
+  "convention_refs": ["<same as evidence.convention_refs>"]
 }
 ```
 

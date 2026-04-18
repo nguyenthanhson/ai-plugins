@@ -21,4 +21,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `rendering-review-summary` skill — conventions and risk summary
 - Optional `--output <path>` argument for JSON artifact export
 - Minimal read-only permission set via `.claude/settings.json`
-- Benchmark corpus with three representative cases
+- Benchmark corpus with eight representative cases covering: clean diff (no findings), flaky waits, brittle selectors, fixture boundary violations, page object misuse, TypeScript typing, documented-convention mismatches, and doc-vs-code conflicts

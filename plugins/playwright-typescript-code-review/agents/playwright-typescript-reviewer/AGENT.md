@@ -109,7 +109,7 @@ Apply the `reviewing-playwright-typescript` skill with:
 - `discovery_context` from Step 3
 
 The skill returns a `candidate_findings` array. Each item has:
-`title`, `category`, `raw_severity`, `diff_evidence`, `explanation`, `suggested_fix`, `convention_refs`
+`title`, `category`, `raw_severity`, `location{}`, `evidence{}`, `why_it_matters`, `suggested_fix`, `convention_refs`
 
 ---
 
@@ -150,13 +150,15 @@ Assemble the v1 schema object:
     "repository_conventions": "<from discovery_context>",
     "findings": "<filtered findings>",
     "summary": {
-      "top_risks": "<derived from high/medium findings>",
-      "assumptions": "<list any assumptions made during discovery>",
-      "uncertainties": "<suppressed_to_uncertainties>"
+      "top_risks": "<derived from high/medium findings — one sentence per high/medium finding naming the file and consequence, maximum 5>",
+      "assumptions": [],
+      "uncertainties": "<suppressed_to_uncertainties from Step 6>"
     }
   }
 }
 ```
+
+Note on finding fields: candidate findings from Step 4 use `raw_severity`, `location{}`, `evidence{}`, and `why_it_matters`. Steps 5 and 6 add `severity`, `confidence`, and `uncertainty_flags`. The final findings in the schema object use these fields — `raw_severity` is dropped and `id` is assigned sequentially (f-1, f-2, ...) before rendering.
 
 Apply the `rendering-review-findings` skill with the assembled schema to render findings to the terminal.
 

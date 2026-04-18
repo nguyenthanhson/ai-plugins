@@ -19,7 +19,7 @@ Apply all rules in order. A finding suppressed by an earlier rule does not need 
 ### Rule 1: Suppress Low-Confidence Findings
 
 Remove any finding with `confidence: "low"` from the main findings list.
-Add to `suppressed_to_uncertainties`: `"[low-confidence] <title> (<file>:<line>)"`
+Add to `suppressed_to_uncertainties`: `"[low-confidence] <title> (<location.file>:<location.line>) — suppressed: <one-sentence reason why confidence is low, e.g. 'selector convention is conflicted between CONTRIBUTING.md and existing code patterns'>"`
 
 **Exception:** If `severity` is `"high"` AND `uncertainty_flags` contains only `"no-explicit-doc"` (and NOT `"conflicted-convention"`):
 - Keep the finding in the main list

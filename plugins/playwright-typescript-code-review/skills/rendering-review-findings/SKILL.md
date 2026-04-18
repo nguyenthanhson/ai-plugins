@@ -52,7 +52,7 @@ For each finding, render:
 ```
 ──────────────────────────────────────────────────────────────
 [<SEVERITY_LABEL>] [<CATEGORY_LABEL>] — <title>
-File: <file>:<line>–<end_line>
+File: <location.file>:<location.line>–<location.end_line>
 Confidence: <confidence>
 
 <why_it_matters>
@@ -61,10 +61,10 @@ Suggested fix:
   <suggested_fix>
 ```
 
-Where file line is rendered as:
-- `File: <file>:<line>–<end_line>` if both line and end_line are set
-- `File: <file>:<line>` if only line is set
-- `File: <file>` if neither line nor end_line is set
+Where file location is read from `location.file`, `location.line`, and `location.end_line` and rendered as:
+- `File: <location.file>:<location.line>–<location.end_line>` if both line and end_line are set
+- `File: <location.file>:<location.line>` if only line is set
+- `File: <location.file>` if neither line nor end_line is set
 
 Where SEVERITY_LABEL is:
 - `HIGH` for high severity
