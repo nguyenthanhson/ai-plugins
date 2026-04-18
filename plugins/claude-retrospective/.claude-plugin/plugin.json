@@ -1,0 +1,23 @@
+{
+  "name": "claude-retrospective",
+  "version": "1.1.1",
+  "description": "Comprehensive analysis of Claude Code sessions to identify successful patterns, problematic areas, and opportunities for improvement.",
+  "author": {
+    "name": "Son Nguyen",
+    "url": "https://github.com/nguyenthanhson"
+  },
+  "homepage": "https://github.com/nguyenthanhson/ai-plugins/tree/main/plugins/claude-retrospective",
+  "repository": "https://github.com/nguyenthanhson/ai-plugins",
+  "keywords": [
+    "analysis",
+    "retrospective",
+    "session-review",
+    "performance-insights",
+    "improvement-opportunities"
+  ],
+  "skills": [
+    "./skills/retrospecting",
+    "./skills/extracting-session-data",
+    "./skills/analyzing-git-sessions"
+  ]
+}
