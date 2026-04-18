@@ -27,6 +27,12 @@
       "source": "./plugins/playwright-typescript-code-review",
       "version": "0.1.0",
       "description": "Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. Returns structured local findings — never posts to GitHub."
+    },
+    {
+      "name": "claude-retrospective",
+      "source": "./plugins/claude-retrospective",
+      "version": "1.1.1",
+      "description": "Comprehensive analysis of Claude Code sessions to identify successful patterns, problematic areas, and opportunities for improvement."
     }
   ]
 }
