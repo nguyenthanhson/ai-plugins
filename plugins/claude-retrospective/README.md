@@ -4,6 +4,12 @@ Comprehensive analysis of Claude Code sessions to identify successful patterns, 
 
 Adapted from [bitwarden/ai-plugins](https://github.com/bitwarden/ai-plugins/tree/main/plugins/claude-retrospective) v1.1.1.
 
+## Installation
+
+```bash
+claude plugin install claude-retrospective github:nguyenthanhson/ai-plugins
+```
+
 ## Skills
 
 ### retrospecting

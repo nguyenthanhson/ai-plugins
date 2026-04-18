@@ -127,8 +127,18 @@ fi
 date_to_timestamp() {
     local date_str="$1"
     if [[ "${date_str}" =~ ago ]]; then
-        # Handle relative dates like "2 days ago"
-        date -j -v-$(echo "${date_str}" | sed 's/ ago//') +%s 2>/dev/null || date -d "${date_str}" +%s 2>/dev/null
+        # Parse "N unit ago" for BSD date -j -v flag
+        local num unit unit_char
+        num=$(echo "${date_str}" | sed 's/[^0-9]//g')
+        unit=$(echo "${date_str}" | sed 's/[0-9 ]//g; s/ago//; s/s$//')
+        case "${unit}" in
+            day)   unit_char="d" ;;
+            hour)  unit_char="H" ;;
+            week)  unit_char="w" ;;
+            month) unit_char="m" ;;
+            *)     unit_char="d" ;;
+        esac
+        date -j -v-${num}${unit_char} +%s 2>/dev/null || date -d "${date_str}" +%s 2>/dev/null
     else
         # Handle absolute dates like "2025-10-24"
         date -j -f "%Y-%m-%d" "${date_str}" +%s 2>/dev/null || date -d "${date_str}" +%s 2>/dev/null

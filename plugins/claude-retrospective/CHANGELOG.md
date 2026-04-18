@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Removed Cross-Plugin Enrichment section (Bitwarden-specific plugin hooks not applicable to this collection)
 - Updated authorship and repository URLs to `nguyenthanhson/ai-plugins`
 - Added `skills` array to `plugin.json` per local plugin schema requirements
+
+### Removed
+
+- Cross-Plugin Enrichment section (Bitwarden-specific plugin hooks not applicable to this collection)
