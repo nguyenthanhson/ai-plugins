@@ -7,8 +7,13 @@ Representative Playwright TypeScript diffs for evaluating review quality before 
 | Case | Expected findings | Purpose |
 |------|-------------------|---------|
 | `clean-diff` | 0 | Verifies no false positives on well-written Playwright code |
-| `flaky-wait` | 1 high (reliability) | Verifies `waitForTimeout` is flagged with correct severity |
-| `brittle-selector` | 1 medium (reliability) | Verifies brittle CSS hash selector is flagged |
+| `flaky-wait` | 2 high (reliability) | Verifies `waitForTimeout` is flagged — two occurrences |
+| `brittle-selector` | 2 medium (reliability) | Verifies brittle CSS hash selectors are flagged |
+| `fixture-boundary` | 1 medium (maintainability) | Verifies assertion-in-fixture is caught |
+| `page-object-misuse` | 2 medium (maintainability) | Verifies assertion methods on page objects are caught |
+| `typescript-typing` | 3 low (typescript-correctness) | Verifies Promise<any> return types are flagged |
+| `convention-mismatch` | 2 high (reliability) | Verifies explicit doc convention violation is flagged |
+| `doc-code-conflict` | 0 findings, 1 uncertainty | Verifies conflicted conventions produce no hard claims |
 
 ## Evaluation Process
 

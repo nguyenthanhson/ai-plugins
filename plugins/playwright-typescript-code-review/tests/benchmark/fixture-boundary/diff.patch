@@ -1,0 +1,20 @@
+diff --git a/fixtures/auth.ts b/fixtures/auth.ts
+index 2a3b4c5..6d7e8f9 100644
+--- a/fixtures/auth.ts
++++ b/fixtures/auth.ts
+@@ -8,6 +8,15 @@ export const test = base.extend<{
+   loggedInPage: Page;
+ }>({
+   loggedInPage: async ({ page }, use) => {
++    // Navigate and assert we're on the login page before proceeding
++    await page.goto('/login');
++    await expect(page.getByRole('heading', { name: 'Sign in' })).toBeVisible();
+     await page.fill('[name=email]', 'user@example.com');
+     await page.fill('[name=password]', 'password');
+     await page.click('[type=submit]');
++    // Assert redirect happened correctly
++    await expect(page).toHaveURL('/dashboard');
++    await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
+     await use(page);
+   },
+ });

@@ -1,0 +1,17 @@
+{
+  "repository_conventions": [
+    {
+      "id": "code-1",
+      "category": "page-object",
+      "summary": "Page object methods perform actions and return locators. Assertions are written in the test body, not in page object methods.",
+      "source_type": "code",
+      "sources": ["pages/LoginPage.ts", "pages/ProductPage.ts", "pages/ProfilePage.ts"],
+      "confidence": "high",
+      "status": "observed"
+    }
+  ],
+  "nearby_context_files": {
+    "pages/CheckoutPage.ts": ["pages/LoginPage.ts", "pages/ProductPage.ts", "tests/checkout.spec.ts"]
+  },
+  "discovery_budget_used": 3
+}

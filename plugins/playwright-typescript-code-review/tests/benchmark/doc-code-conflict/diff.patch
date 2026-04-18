@@ -1,0 +1,16 @@
+diff --git a/tests/profile.spec.ts b/tests/profile.spec.ts
+index 6a7b8c9..0d1e2f3 100644
+--- a/tests/profile.spec.ts
++++ b/tests/profile.spec.ts
+@@ -3,6 +3,14 @@ import { test, expect } from '../fixtures/auth';
+
+ test.describe('Profile', () => {
++  test('displays user display name', async ({ page }) => {
++    await page.goto('/profile');
++    await expect(page.locator('.profile-display-name')).toBeVisible();
++    await expect(page.locator('.profile-display-name')).toHaveText('Test User');
++  });
++
+   test('allows editing display name', async ({ page }) => {
+     await page.goto('/profile');
+     await page.locator('.profile-display-name').click();

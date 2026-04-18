@@ -1,0 +1,26 @@
+{
+  "repository_conventions": [
+    {
+      "id": "doc-1",
+      "category": "selector",
+      "summary": "Use getByRole, getByLabel, or getByTestId. Avoid CSS class selectors.",
+      "source_type": "doc",
+      "sources": ["CONTRIBUTING.md"],
+      "confidence": "high",
+      "status": "conflicted"
+    },
+    {
+      "id": "code-1",
+      "category": "selector",
+      "summary": "CSS class selectors like .profile-display-name are used throughout profile tests",
+      "source_type": "code",
+      "sources": ["tests/profile.spec.ts", "tests/settings.spec.ts"],
+      "confidence": "medium",
+      "status": "conflicted"
+    }
+  ],
+  "nearby_context_files": {
+    "tests/profile.spec.ts": ["fixtures/auth.ts", "tests/settings.spec.ts"]
+  },
+  "discovery_budget_used": 2
+}

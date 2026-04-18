@@ -1,0 +1,21 @@
+diff --git a/pages/CheckoutPage.ts b/pages/CheckoutPage.ts
+index 3c4d5e6..7f8a9b0 100644
+--- a/pages/CheckoutPage.ts
++++ b/pages/CheckoutPage.ts
+@@ -12,6 +12,14 @@ export class CheckoutPage {
+   async submitOrder() {
+     await this.page.getByRole('button', { name: 'Place order' }).click();
++    // Verify order was placed successfully
++    await expect(this.page).toHaveURL('/order-confirmation');
++    await expect(this.page.getByRole('heading', { name: 'Order placed' })).toBeVisible();
+   }
+
++  async verifyItemInCart(productName: string) {
++    const cartItem = this.page.getByTestId('cart-item').filter({ hasText: productName });
++    await expect(cartItem).toBeVisible();
++    await expect(cartItem.getByTestId('item-quantity')).toHaveText('1');
++  }
++
+   get orderSummary() {
+     return this.page.getByTestId('order-summary');
+   }

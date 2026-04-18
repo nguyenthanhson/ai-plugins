@@ -1,0 +1,76 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-04-17T00:00:00.000Z",
+    "repository_conventions": [
+      {
+        "id": "code-1",
+        "category": "page-object",
+        "summary": "Page object methods perform actions and return locators. Assertions are written in the test body, not in page object methods.",
+        "source_type": "code",
+        "sources": ["pages/LoginPage.ts", "pages/ProductPage.ts", "pages/ProfilePage.ts"],
+        "confidence": "high",
+        "status": "observed"
+      }
+    ],
+    "findings": [
+      {
+        "id": "f-1",
+        "title": "submitOrder() contains assertions that belong in the test body",
+        "severity": "medium",
+        "confidence": "high",
+        "category": "maintainability",
+        "location": {
+          "file": "pages/CheckoutPage.ts",
+          "line": 15,
+          "end_line": 16
+        },
+        "evidence": {
+          "summary": "expect() calls added inside submitOrder() page object method",
+          "diff_refs": [
+            "+    await expect(this.page).toHaveURL('/order-confirmation');",
+            "+    await expect(this.page.getByRole('heading', { name: 'Order placed' })).toBeVisible();"
+          ],
+          "convention_refs": ["code-1"]
+        },
+        "why_it_matters": "Assertions in page object methods couple the method to a specific expected outcome. If a test needs to verify a failed order submission, it cannot reuse submitOrder() without the assertion interfering. Keeping assertions in the test body keeps the page object reusable.",
+        "suggested_fix": "Remove the two expect() calls from submitOrder(). In the test body, add: `await expect(checkoutPage.page).toHaveURL('/order-confirmation');` after calling `await checkoutPage.submitOrder();`",
+        "uncertainty_flags": []
+      },
+      {
+        "id": "f-2",
+        "title": "verifyItemInCart() is an assertion method on a page object",
+        "severity": "medium",
+        "confidence": "high",
+        "category": "maintainability",
+        "location": {
+          "file": "pages/CheckoutPage.ts",
+          "line": 19,
+          "end_line": 23
+        },
+        "evidence": {
+          "summary": "New method verifyItemInCart() contains only expect() assertions — it is an assertion helper disguised as a page object method",
+          "diff_refs": [
+            "+  async verifyItemInCart(productName: string) {",
+            "+    await expect(cartItem).toBeVisible();",
+            "+    await expect(cartItem.getByTestId('item-quantity')).toHaveText('1');"
+          ],
+          "convention_refs": ["code-1"]
+        },
+        "why_it_matters": "The method name starts with 'verify' and contains only assertions. This is an assertion helper, not a page action. Placing it on the page object mixes concerns and makes the test body opaque — callers cannot see what is being asserted without reading the page object.",
+        "suggested_fix": "Remove verifyItemInCart() from the page object. Add a locator getter instead: `cartItem(productName: string) { return this.page.getByTestId('cart-item').filter({ hasText: productName }); }` and write the assertions in the test body.",
+        "uncertainty_flags": []
+      }
+    ],
+    "summary": {
+      "top_risks": [
+        "pages/CheckoutPage.ts: assertion methods on the page object couple it to specific expected outcomes, reducing reusability"
+      ],
+      "assumptions": [],
+      "uncertainties": []
+    }
+  }
+}

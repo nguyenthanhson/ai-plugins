@@ -1,0 +1,78 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-04-17T00:00:00.000Z",
+    "repository_conventions": [
+      {
+        "id": "doc-1",
+        "category": "waiting",
+        "summary": "waitForTimeout is forbidden. Use Playwright locator assertions which auto-wait.",
+        "source_type": "doc",
+        "sources": ["coding-standards.md"],
+        "confidence": "high",
+        "status": "observed"
+      },
+      {
+        "id": "code-1",
+        "category": "selector",
+        "summary": "Use getByRole and getByTestId for element selection",
+        "source_type": "code",
+        "sources": ["tests/checkout.spec.ts", "tests/login.spec.ts"],
+        "confidence": "medium",
+        "status": "observed"
+      }
+    ],
+    "findings": [
+      {
+        "id": "f-1",
+        "title": "waitForTimeout(1500) before search results assertion violates documented waiting convention",
+        "severity": "high",
+        "confidence": "high",
+        "category": "reliability",
+        "location": {
+          "file": "tests/search.spec.ts",
+          "line": 10,
+          "end_line": 10
+        },
+        "evidence": {
+          "summary": "waitForTimeout(1500) added before asserting search-results visibility — directly contradicts coding-standards.md",
+          "diff_refs": ["+    await page.waitForTimeout(1500);"],
+          "convention_refs": ["doc-1"]
+        },
+        "why_it_matters": "The documented standard explicitly forbids waitForTimeout. The following toBeVisible() assertion already auto-waits up to the configured timeout. The hard sleep adds latency on fast machines and causes flakiness on slow ones.",
+        "suggested_fix": "Remove `await page.waitForTimeout(1500);`. The assertion `await expect(page.getByTestId('search-results')).toBeVisible();` handles waiting automatically.",
+        "uncertainty_flags": []
+      },
+      {
+        "id": "f-2",
+        "title": "waitForTimeout(1500) before no-results assertion violates documented waiting convention",
+        "severity": "high",
+        "confidence": "high",
+        "category": "reliability",
+        "location": {
+          "file": "tests/search.spec.ts",
+          "line": 17,
+          "end_line": 17
+        },
+        "evidence": {
+          "summary": "waitForTimeout(1500) added before asserting no-results-message visibility",
+          "diff_refs": ["+    await page.waitForTimeout(1500);"],
+          "convention_refs": ["doc-1"]
+        },
+        "why_it_matters": "Same issue as f-1. The no-results-message assertion already auto-waits.",
+        "suggested_fix": "Remove `await page.waitForTimeout(1500);`.",
+        "uncertainty_flags": []
+      }
+    ],
+    "summary": {
+      "top_risks": [
+        "tests/search.spec.ts adds two waitForTimeout hard sleeps that directly violate the documented coding standard"
+      ],
+      "assumptions": [],
+      "uncertainties": []
+    }
+  }
+}

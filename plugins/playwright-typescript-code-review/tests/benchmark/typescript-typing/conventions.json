@@ -1,0 +1,7 @@
+{
+  "repository_conventions": [],
+  "nearby_context_files": {
+    "helpers/api.ts": ["helpers/fixtures.ts", "tests/admin.spec.ts"]
+  },
+  "discovery_budget_used": 2
+}

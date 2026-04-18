@@ -1,0 +1,84 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-04-17T00:00:00.000Z",
+    "repository_conventions": [],
+    "findings": [
+      {
+        "id": "f-1",
+        "title": "createUser returns Promise<any> despite a User interface being defined in the same file",
+        "severity": "low",
+        "confidence": "medium",
+        "category": "typescript-correctness",
+        "location": {
+          "file": "helpers/api.ts",
+          "line": 8,
+          "end_line": 8
+        },
+        "evidence": {
+          "summary": "Function signature says Promise<any> but the file defines a User interface and the implementation casts to User",
+          "diff_refs": [
+            "+export async function createUser(request: APIRequestContext, email: string): Promise<any> {",
+            "+  return response.json() as unknown as User;"
+          ],
+          "convention_refs": []
+        },
+        "why_it_matters": "The return type Promise<any> defeats TypeScript's type checking for all callers. The User interface is defined right above this function — using Promise<User> as the return type is a one-character change that gives callers type safety.",
+        "suggested_fix": "Change the return type to `Promise<User>` and remove the `as unknown as User` cast: `const data: User = await response.json(); return data;`",
+        "uncertainty_flags": ["inferred-from-api", "no-explicit-doc"]
+      },
+      {
+        "id": "f-2",
+        "title": "getUsers returns Promise<any> with no type annotation for the response",
+        "severity": "low",
+        "confidence": "medium",
+        "category": "typescript-correctness",
+        "location": {
+          "file": "helpers/api.ts",
+          "line": 15,
+          "end_line": 15
+        },
+        "evidence": {
+          "summary": "getUsers() return type is Promise<any>",
+          "diff_refs": [
+            "+export async function getUsers(request: APIRequestContext): Promise<any> {"
+          ],
+          "convention_refs": []
+        },
+        "why_it_matters": "Returns an untyped array. Since a User interface exists in the file, the return type should be Promise<User[]>.",
+        "suggested_fix": "Change return type to `Promise<User[]>` and add type annotation: `const data: User[] = await response.json(); return data;`",
+        "uncertainty_flags": ["inferred-from-api", "no-explicit-doc"]
+      },
+      {
+        "id": "f-3",
+        "title": "deleteUser parameter id typed as any instead of number",
+        "severity": "low",
+        "confidence": "medium",
+        "category": "typescript-correctness",
+        "location": {
+          "file": "helpers/api.ts",
+          "line": 20,
+          "end_line": 20
+        },
+        "evidence": {
+          "summary": "deleteUser(request, id: any) — id should be number to match User.id",
+          "diff_refs": [
+            "+export async function deleteUser(request: APIRequestContext, id: any): Promise<any> {"
+          ],
+          "convention_refs": []
+        },
+        "why_it_matters": "Typing id as any means TypeScript cannot catch passing a string or object as the user ID. User.id is typed as number — deleteUser should accept number.",
+        "suggested_fix": "Change signature to `deleteUser(request: APIRequestContext, id: number): Promise<boolean>` and return `response.ok()` typed as boolean.",
+        "uncertainty_flags": ["inferred-from-api", "no-explicit-doc"]
+      }
+    ],
+    "summary": {
+      "top_risks": [],
+      "assumptions": [],
+      "uncertainties": []
+    }
+  }
+}
