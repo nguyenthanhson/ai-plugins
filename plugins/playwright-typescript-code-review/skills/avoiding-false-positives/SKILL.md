@@ -33,7 +33,7 @@ If `uncertainty_flags` contains `"conflicted-convention"` AND `category` is `"ma
 
 ### Rule 3: Rewrite Overconfident Language
 
-For any finding in the main list, scan `explanation` and `title` for these phrases:
+For any finding in the main list, scan `why_it_matters` and `title` for these phrases:
 - "violates repository standard"
 - "against the project convention"
 - "contrary to the documented approach"
@@ -41,16 +41,16 @@ For any finding in the main list, scan `explanation` and `title` for these phras
 
 If found, verify:
 - At least one `convention_refs` entry has `status: "observed"` AND `confidence: "high"` AND is not `"conflicted"`
-- AND `diff_evidence` directly shows the violation
+- AND `evidence.diff_refs` directly shows the violation
 
 If either condition fails, rewrite the phrase to: `"differs from the observed pattern in <source>"` or `"Playwright recommends <alternative> instead"`.
 
 ### Rule 4: Deduplicate
 
-If two findings have the same `file` and overlapping `line`/`end_line` ranges and similar `title` content:
+If two findings have the same `location.file` and overlapping `location.line`/`location.end_line` ranges and similar `title` content:
 - Keep the finding with higher severity
 - If severity is equal, keep the finding with higher confidence
-- Keep the `explanation` that is more specific (longer and more precise)
+- Keep the `why_it_matters` that is more specific (longer and more precise)
 - Drop the other finding (do not add to uncertainties)
 
 ### Rule 5: Cap Low-Severity Noise
