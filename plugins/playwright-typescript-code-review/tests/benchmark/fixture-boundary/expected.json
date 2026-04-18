@@ -1,0 +1,53 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-04-17T00:00:00.000Z",
+    "repository_conventions": [
+      {
+        "id": "doc-1",
+        "category": "fixtures",
+        "summary": "Fixtures handle setup and teardown only. Assertions belong in test bodies, not fixtures.",
+        "source_type": "doc",
+        "sources": ["CONTRIBUTING.md"],
+        "confidence": "high",
+        "status": "observed"
+      }
+    ],
+    "findings": [
+      {
+        "id": "f-1",
+        "title": "Fixture loggedInPage performs assertions that belong in the test body",
+        "severity": "medium",
+        "confidence": "high",
+        "category": "maintainability",
+        "location": {
+          "file": "fixtures/auth.ts",
+          "line": 11,
+          "end_line": 18
+        },
+        "evidence": {
+          "summary": "expect() calls added inside fixture setup code",
+          "diff_refs": [
+            "+    await expect(page.getByRole('heading', { name: 'Sign in' })).toBeVisible();",
+            "+    await expect(page).toHaveURL('/dashboard');",
+            "+    await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();"
+          ],
+          "convention_refs": ["doc-1"]
+        },
+        "why_it_matters": "Assertions in fixtures make failures harder to diagnose — a test failure will point at the fixture rather than the test case. If the dashboard heading changes, every test using loggedInPage fails at setup, not at the specific assertion that checks the heading. Fixture setup should reach a known state and stop; assertions on that state belong in individual tests.",
+        "suggested_fix": "Remove the three expect() calls from the fixture. Move any assertions about the post-login state into the specific test cases that care about them.",
+        "uncertainty_flags": []
+      }
+    ],
+    "summary": {
+      "top_risks": [
+        "fixtures/auth.ts: assertions inside fixture setup will cause misleading failure locations when login state breaks"
+      ],
+      "assumptions": [],
+      "uncertainties": []
+    }
+  }
+}

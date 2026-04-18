@@ -21,6 +21,12 @@
       "source": "./plugins/personal-software-engineer",
       "version": "0.2.0",
       "description": "Personal software engineering skills collection."
+    },
+    {
+      "name": "playwright-typescript-code-review",
+      "source": "./plugins/playwright-typescript-code-review",
+      "version": "0.1.0",
+      "description": "Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. Returns structured local findings — never posts to GitHub."
     }
   ]
 }

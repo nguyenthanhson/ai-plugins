@@ -1,0 +1,18 @@
+diff --git a/tests/product.spec.ts b/tests/product.spec.ts
+index 9a8b7c6..1d2e3f4 100644
+--- a/tests/product.spec.ts
++++ b/tests/product.spec.ts
+@@ -8,7 +8,12 @@ test.describe('Product page', () => {
+   test('adds product to cart', async ({ page, productPage }) => {
+     await productPage.goto('/product/123');
+-    await page.getByRole('button', { name: 'Add to cart' }).click();
++    await page.locator('.btn-primary_a8f3d2').click();
+     await expect(page.getByRole('status')).toContainText('Added to cart');
+   });
++
++  test('shows product rating', async ({ page, productPage }) => {
++    await productPage.goto('/product/123');
++    await expect(page.locator('.rating__stars_9k2m1')).toBeVisible();
++    await expect(page.locator('.rating__count_x7p4q')).toContainText('(42 reviews)');
++  });
+ });

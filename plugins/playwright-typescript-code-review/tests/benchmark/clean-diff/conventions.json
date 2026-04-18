@@ -1,0 +1,26 @@
+{
+  "repository_conventions": [
+    {
+      "id": "doc-1",
+      "category": "assertion",
+      "summary": "Use Playwright web-first assertions (toBeVisible, toHaveText, toContainText) instead of .textContent() or .isVisible() calls",
+      "source_type": "doc",
+      "sources": ["CONTRIBUTING.md"],
+      "confidence": "high",
+      "status": "observed"
+    },
+    {
+      "id": "code-1",
+      "category": "selector",
+      "summary": "Use getByRole and getByLabel for interactive elements; reserve getByTestId for elements without semantic roles",
+      "source_type": "code",
+      "sources": ["tests/checkout.spec.ts", "tests/profile.spec.ts"],
+      "confidence": "medium",
+      "status": "observed"
+    }
+  ],
+  "nearby_context_files": {
+    "tests/login.spec.ts": ["fixtures/auth.ts", "pages/LoginPage.ts"]
+  },
+  "discovery_budget_used": 2
+}

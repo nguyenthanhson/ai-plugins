@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git merge-base*)",
+      "Bash(git diff-tree*)",
+      "Bash(git status*)",
+      "Bash(git rev-parse*)",
+      "Bash(git name-rev*)",
+      "Bash(ls *)",
+      "Bash(find * -name *.md -maxdepth 3)",
+      "Bash(find * -name playwright.config.* -maxdepth 3)",
+      "Bash(cat package.json)",
+      "Bash(cat playwright.config.ts)",
+      "Bash(cat playwright.config.js)",
+      "Bash(cat playwright.config.mts)",
+      "Bash(grep -n * *)",
+      "Bash(head * *)"
+    ],
+    "deny": [
+      "Bash(git push*)",
+      "Bash(git commit*)",
+      "Bash(git checkout*)",
+      "Bash(git reset*)",
+      "Bash(git clean*)",
+      "Bash(git stash*)",
+      "Bash(curl*)",
+      "Bash(wget*)",
+      "Bash(npm install*)",
+      "Bash(npm run*)",
+      "Bash(npx*)",
+      "Bash(gh*)",
+      "WebFetch",
+      "WebSearch"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-04-17T00:00:00.000Z",
+    "repository_conventions": [
+      {
+        "id": "doc-1",
+        "category": "selector",
+        "summary": "Use getByRole, getByLabel, or getByTestId. Avoid CSS class selectors.",
+        "source_type": "doc",
+        "sources": ["CONTRIBUTING.md"],
+        "confidence": "high",
+        "status": "conflicted"
+      },
+      {
+        "id": "code-1",
+        "category": "selector",
+        "summary": "CSS class selectors like .profile-display-name are used throughout profile tests",
+        "source_type": "code",
+        "sources": ["tests/profile.spec.ts", "tests/settings.spec.ts"],
+        "confidence": "medium",
+        "status": "conflicted"
+      }
+    ],
+    "findings": [],
+    "summary": {
+      "top_risks": [],
+      "assumptions": [],
+      "uncertainties": [
+        "[low-confidence] CSS class selector .profile-display-name used instead of getByRole/getByTestId (tests/profile.spec.ts:5) — suppressed: selector convention is conflicted between CONTRIBUTING.md and existing code patterns"
+      ]
+    }
+  }
+}

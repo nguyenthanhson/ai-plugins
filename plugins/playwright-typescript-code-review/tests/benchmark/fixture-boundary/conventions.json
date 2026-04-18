@@ -1,0 +1,17 @@
+{
+  "repository_conventions": [
+    {
+      "id": "doc-1",
+      "category": "fixtures",
+      "summary": "Fixtures handle setup and teardown only. Assertions belong in test bodies, not fixtures.",
+      "source_type": "doc",
+      "sources": ["CONTRIBUTING.md"],
+      "confidence": "high",
+      "status": "observed"
+    }
+  ],
+  "nearby_context_files": {
+    "fixtures/auth.ts": ["fixtures/checkout.ts", "tests/login.spec.ts"]
+  },
+  "discovery_budget_used": 2
+}

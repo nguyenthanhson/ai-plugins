@@ -8,6 +8,7 @@ Personal Claude Code plugin marketplace for professional work.
 | --- | --- | --- |
 | [atlassian-tools](./plugins/atlassian-tools) | 2.2.3 | Read-only Jira/Confluence access via MCP with deep issue research skill |
 | [personal-software-engineer](./plugins/personal-software-engineer) | 0.2.0 | UX expert, devil's advocate, and software engineering skills |
+| [playwright-typescript-code-review](./plugins/playwright-typescript-code-review) | 0.1.0 | Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. |
 
 ## Installing Plugins
 

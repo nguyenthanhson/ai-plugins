@@ -1,0 +1,33 @@
+diff --git a/tests/login.spec.ts b/tests/login.spec.ts
+index 3a1b2c3..4d5e6f7 100644
+--- a/tests/login.spec.ts
++++ b/tests/login.spec.ts
+@@ -1,10 +1,22 @@
+ import { test, expect } from '../fixtures/auth';
+
+-test('redirects to dashboard after login', async ({ page, loginPage }) => {
+-  await loginPage.goto();
+-  await loginPage.login('user@example.com', 'password');
+-  await expect(page).toHaveURL('/dashboard');
+-});
++test.describe('Login flow', () => {
++  test('redirects to dashboard after successful login', async ({ page, loginPage }) => {
++    await loginPage.goto();
++    await loginPage.login('user@example.com', 'password');
++    await expect(page).toHaveURL('/dashboard');
++    await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
++  });
++
++  test('shows error message for invalid credentials', async ({ loginPage }) => {
++    await loginPage.goto();
++    await loginPage.login('user@example.com', 'wrong-password');
++    await expect(loginPage.errorMessage).toBeVisible();
++    await expect(loginPage.errorMessage).toContainText('Invalid credentials');
++  });
++
++  test('preserves redirect URL after login', async ({ page, loginPage }) => {
++    await page.goto('/protected-page');
++    await loginPage.login('user@example.com', 'password');
++    await expect(page).toHaveURL('/protected-page');
++  });
++});

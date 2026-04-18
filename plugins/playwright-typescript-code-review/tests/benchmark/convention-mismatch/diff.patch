@@ -1,0 +1,24 @@
+diff --git a/tests/search.spec.ts b/tests/search.spec.ts
+index 5f6a7b8..9c0d1e2 100644
+--- a/tests/search.spec.ts
++++ b/tests/search.spec.ts
+@@ -5,8 +5,16 @@ import { test, expect } from '../fixtures/base';
+ test.describe('Search', () => {
+   test('returns results for valid query', async ({ page }) => {
+     await page.goto('/search');
+-    await page.getByRole('searchbox').fill('laptop');
+-    await page.getByRole('button', { name: 'Search' }).click();
++    await page.getByRole('searchbox').fill('laptop');
++    await page.getByRole('button', { name: 'Search' }).click();
++    await page.waitForTimeout(1500);
+     await expect(page.getByTestId('search-results')).toBeVisible();
+   });
++
++  test('shows no results message for unknown query', async ({ page }) => {
++    await page.goto('/search');
++    await page.getByRole('searchbox').fill('xyzzy-not-a-product-12345');
++    await page.getByRole('button', { name: 'Search' }).click();
++    await page.waitForTimeout(1500);
++    await expect(page.getByTestId('no-results-message')).toBeVisible();
++  });
+ });

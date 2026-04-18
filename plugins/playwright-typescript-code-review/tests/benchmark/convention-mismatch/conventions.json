@@ -1,0 +1,26 @@
+{
+  "repository_conventions": [
+    {
+      "id": "doc-1",
+      "category": "waiting",
+      "summary": "waitForTimeout is forbidden. Use Playwright locator assertions which auto-wait.",
+      "source_type": "doc",
+      "sources": ["coding-standards.md"],
+      "confidence": "high",
+      "status": "observed"
+    },
+    {
+      "id": "code-1",
+      "category": "selector",
+      "summary": "Use getByRole and getByTestId for element selection",
+      "source_type": "code",
+      "sources": ["tests/checkout.spec.ts", "tests/login.spec.ts"],
+      "confidence": "medium",
+      "status": "observed"
+    }
+  ],
+  "nearby_context_files": {
+    "tests/search.spec.ts": ["fixtures/base.ts", "tests/checkout.spec.ts"]
+  },
+  "discovery_budget_used": 2
+}

@@ -1,0 +1,20 @@
+diff --git a/tests/checkout.spec.ts b/tests/checkout.spec.ts
+index 1a2b3c4..5d6e7f8 100644
+--- a/tests/checkout.spec.ts
++++ b/tests/checkout.spec.ts
+@@ -15,6 +15,14 @@ test.describe('Checkout', () => {
+     await checkoutPage.fillShipping(address);
+     await checkoutPage.submitShipping();
+-    await expect(checkoutPage.paymentSection).toBeVisible();
++    await page.waitForTimeout(2000);
++    await expect(checkoutPage.paymentSection).toBeVisible();
+   });
++
++  test('shows order confirmation after payment', async ({ page, checkoutPage }) => {
++    await checkoutPage.fillPayment(card);
++    await checkoutPage.submitPayment();
++    await page.waitForTimeout(3000);
++    await expect(page).toHaveURL('/confirmation');
++    await expect(page.getByRole('heading', { name: 'Order confirmed' })).toBeVisible();
++  });
+ });
