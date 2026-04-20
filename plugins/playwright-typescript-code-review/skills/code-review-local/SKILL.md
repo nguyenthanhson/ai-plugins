@@ -5,7 +5,7 @@ description: Review local Playwright TypeScript changes against HEAD for reliabi
 
 # Code Review (Local Mode)
 
-Invoke the `playwright-typescript-reviewer` agent in local mode.
+Invoke the `playwright-typescript-code-review:playwright-typescript-reviewer` agent in local mode.
 
 ## Parse Arguments
 
@@ -17,7 +17,7 @@ No required arguments. Running `/code-review-local` with no arguments reviews al
 
 ## Hand Off to Agent
 
-Invoke the `playwright-typescript-reviewer` agent with:
+Use the Agent tool with `subagent_type: playwright-typescript-code-review:playwright-typescript-reviewer` and pass:
 - `mode: "local"`
 - `staged_only: <true if --staged was passed, false otherwise>`
 - `output_path: <--output value, or null>`

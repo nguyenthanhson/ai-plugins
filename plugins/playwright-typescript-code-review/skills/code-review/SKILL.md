@@ -5,7 +5,7 @@ description: Review a Playwright TypeScript pull request for reliability, mainta
 
 # Code Review (PR Mode)
 
-Invoke the `playwright-typescript-reviewer` agent in PR mode.
+Invoke the `playwright-typescript-code-review:playwright-typescript-reviewer` agent in PR mode.
 
 ## Parse Arguments
 
@@ -27,7 +27,7 @@ If `base` or `head` is missing, stop and tell the user:
 
 ## Hand Off to Agent
 
-Invoke the `playwright-typescript-reviewer` agent with:
+Use the Agent tool with `subagent_type: playwright-typescript-code-review:playwright-typescript-reviewer` and pass:
 - `mode: "pr"`
 - `base_sha: <base value>`
 - `head_sha: <head value>`
