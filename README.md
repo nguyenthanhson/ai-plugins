@@ -11,89 +11,49 @@ Personal Claude Code plugin marketplace for professional work.
 | [playwright-typescript-code-review](./plugins/playwright-typescript-code-review) | 0.1.0 | Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. |
 | [claude-retrospective](./plugins/claude-retrospective) | 1.1.1 | Comprehensive analysis of Claude Code sessions to identify successful patterns, problematic areas, and opportunities for improvement. |
 
-## Installing Plugins
+## Usage
 
-### Prerequisites
-
-- [Claude Code](https://claude.ai/code) CLI installed
-
-### Via plugin marketplace (recommended)
-
-1. **Register this marketplace:**
-   ```bash
-   claude plugin add marketplace github:nguyenthanhson/ai-plugins
-   ```
-
-2. **Install a plugin:**
-   ```bash
-   claude plugin install atlassian-tools
-   claude plugin install personal-software-engineer
-   ```
-
-3. **Restart Claude Code** to discover the new skills.
-
-### Via git (manual)
-
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/nguyenthanhson/ai-plugins.git ~/.claude/ai-plugins
-   ```
-
-2. **Symlink the plugin you want:**
-   ```bash
-   mkdir -p ~/.claude/plugins
-   ln -s ~/.claude/ai-plugins/plugins/personal-software-engineer ~/.claude/plugins/personal-software-engineer
-   ln -s ~/.claude/ai-plugins/plugins/atlassian-tools ~/.claude/plugins/atlassian-tools
-   ```
-
-3. **Restart Claude Code.**
-
-### Verify
+### Adding this marketplace to Claude Code
 
 ```bash
-claude plugin list
+# Short form (GitHub owner/repo)
+/plugin marketplace add nguyenthanhson/ai-plugins
+
+# Full GitHub URL
+/plugin marketplace add https://github.com/nguyenthanhson/ai-plugins
 ```
 
-You should see the installed plugins with their skill names.
+After adding the marketplace, restart Claude Code for the changes to take effect.
 
-### OpenAI Codex CLI
+You can also use `/plugin` interactively to manage marketplaces and plugins through a guided interface.
 
-Follow the instructions in [`.codex/INSTALL.md`](./.codex/INSTALL.md).
+### Installing plugins
+
+Once the marketplace is added, install plugins using:
 
 ```bash
-git clone https://github.com/nguyenthanhson/ai-plugins.git ~/.codex/ai-plugins
-mkdir -p ~/.agents/skills
-ln -s ~/.codex/ai-plugins/plugins/atlassian-tools/skills ~/.agents/skills/atlassian-tools
-ln -s ~/.codex/ai-plugins/plugins/personal-software-engineer/skills ~/.agents/skills/personal-software-engineer
+/plugin install atlassian-tools@nguyenthanhson-ai-plugins
+/plugin install personal-software-engineer@nguyenthanhson-ai-plugins
 ```
 
-Restart Codex to discover the skills.
+Plugins are installed to `~/.claude/plugins/` by default. Restart Claude Code after installing for the plugin to become active.
 
-## Updating
+### Keeping plugins up to date
 
-### Via plugin marketplace
+Third-party marketplaces don't auto-update by default. To enable automatic updates, open `/plugin`, go to **Marketplaces**, select this marketplace, and choose **Enable auto-update**. Claude Code will then refresh marketplace data and update installed plugins at startup.
+
+You can also update manually at any time:
 
 ```bash
-claude plugin update atlassian-tools
-claude plugin update personal-software-engineer
+/plugin marketplace update nguyenthanhson-ai-plugins
 ```
 
-### Via git
+### Uninstalling
 
 ```bash
-cd ~/.claude/ai-plugins && git pull
+/plugin remove atlassian-tools
+/plugin remove personal-software-engineer
 ```
-
-Skills update instantly through the symlink.
-
-## Uninstalling
-
-```bash
-claude plugin remove atlassian-tools
-claude plugin remove personal-software-engineer
-```
-
-If installed manually: `rm ~/.claude/plugins/<plugin-name>`
 
 ## Adding a Plugin
 

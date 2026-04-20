@@ -47,7 +47,7 @@ plugins/
   <plugin-name>/
     .claude-plugin/plugin.json    # name, version, description, author, skills[]
     skills/<skill-name>/SKILL.md  # YAML frontmatter: name, description + skill content
-    agents/<agent-name>/AGENT.md  # YAML frontmatter: name, description, tools[]
+    agents/<agent-name>.md        # YAML frontmatter: name, description, tools[]
     mcp/<server-name>/            # Optional TypeScript MCP server (build with tsc)
     README.md
     CHANGELOG.md                  # Must follow Keep a Changelog; version must match plugin.json

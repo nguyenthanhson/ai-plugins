@@ -87,16 +87,14 @@ validate_plugin_structure() {
         fi
     done
 
-    # Validate agent directories have AGENT.md files
+    # Validate agents are flat .md files (not subdirectories)
     if [[ -d "$plugin_path/agents" ]]; then
         for agent_dir in "$plugin_path/agents"/*; do
             if [[ -d "$agent_dir" ]]; then
                 local agent_name
                 agent_name=$(basename "$agent_dir")
-                if [[ ! -f "$agent_dir/AGENT.md" ]]; then
-                    print_error "Agent directory $agent_name missing AGENT.md"
-                    has_errors=1
-                fi
+                print_error "Agent $agent_name must be a flat .md file (agents/$agent_name.md), not a directory"
+                has_errors=1
             fi
         done
     fi
@@ -262,12 +260,12 @@ validate_changelog_format() {
     return $has_errors
 }
 
-# Function to validate AGENT.md frontmatter
+# Function to validate agent .md frontmatter
 validate_agent_frontmatter() {
     local agent_file="$1"
     local plugin_name="$2"
     local agent_name
-    agent_name=$(basename "$(dirname "$agent_file")")
+    agent_name=$(basename "$agent_file" .md)
     local has_errors=0
 
     # Check for YAML frontmatter
@@ -421,7 +419,7 @@ main() {
 
         # Validate agents if they exist
         if [[ -d "$plugin_path/agents" ]]; then
-            for agent_file in "$plugin_path/agents"/*/AGENT.md; do
+            for agent_file in "$plugin_path/agents"/*.md; do
                 if [[ -f "$agent_file" ]]; then
                     validate_agent_frontmatter "$agent_file" "$plugin_name" || plugin_has_errors=1
                 fi
