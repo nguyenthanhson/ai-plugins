@@ -1,0 +1,15 @@
+{
+  "name": "codebase-to-course",
+  "version": "0.1.0",
+  "description": "Turn any codebase into a beautiful, interactive HTML course for non-technical vibe coders.",
+  "author": {
+    "name": "Zara",
+    "url": "https://github.com/zarazhangrui"
+  },
+  "homepage": "https://github.com/zarazhangrui/codebase-to-course",
+  "repository": "https://github.com/nguyenthanhson/ai-plugins",
+  "keywords": ["education", "course", "interactive", "html", "vibe-coding"],
+  "skills": [
+    "./skills/codebase-to-course"
+  ]
+}
