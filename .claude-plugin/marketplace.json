@@ -33,6 +33,12 @@
       "source": "./plugins/claude-retrospective",
       "version": "1.1.1",
       "description": "Comprehensive analysis of Claude Code sessions to identify successful patterns, problematic areas, and opportunities for improvement."
+    },
+    {
+      "name": "codebase-to-course",
+      "source": "./plugins/codebase-to-course",
+      "version": "0.1.0",
+      "description": "Turn any codebase into a beautiful, interactive HTML course for non-technical vibe coders."
     }
   ]
 }
