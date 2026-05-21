@@ -135,6 +135,11 @@ Flag:
 - Any assertion that `await`s a value before passing to `expect()` when a Playwright-native matcher exists (see Lens 1 assertion list — same patterns apply here for correctness)
 - `toBeVisible()` called on a locator that matches multiple elements when the intent is a specific one — should use `.first()`, `.nth(n)`, or a more specific locator
 
+### expect.soft() Opportunity
+
+Flag as `note` severity:
+- A test body with 5 or more consecutive `await expect(...)` calls all using `expect()` (not `expect.soft()`) where none of the assertions depends on the result of the previous one — `expect.soft()` lets all assertions run and collects every failure into a single report rather than stopping at the first; this is particularly valuable for visual or form-field validation tests where seeing all failures at once saves time
+
 ### Auto-Waiting Violations
 
 Flag:
@@ -171,6 +176,14 @@ Flag (in `playwright.config.*` changes only):
 Flag:
 - Helper function with return type `Promise<any>` where a concrete type is inferable
 - `as unknown as T` cast in a reusable utility without a type guard or comment explaining why
+
+### Floating Promises
+
+Flag:
+- A Playwright API call that returns a Promise but is not `await`ed and is not part of a `Promise.all()` or `.then()` chain. Only flag when the diff line unambiguously shows a standalone call without `await` or `return`:
+  - `page.click(selector)` without `await` — the click fires but the next line runs immediately before navigation completes
+  - `locator.fill(value)` without `await` — the field may not be filled when the form is submitted
+  - `expect(locator).toBeVisible()` without `await` — the assertion never actually runs; the Promise is discarded
 
 ---
 
