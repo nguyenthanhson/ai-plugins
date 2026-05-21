@@ -1,0 +1,7 @@
+{
+  "repository_conventions": [],
+  "nearby_context_files": {
+    "tests/settings.spec.ts": ["fixtures/auth.ts", "pages/SettingsPage.ts"]
+  },
+  "discovery_budget_used": 2
+}

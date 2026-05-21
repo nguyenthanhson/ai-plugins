@@ -1,0 +1,20 @@
+diff --git a/tests/settings.spec.ts b/tests/settings.spec.ts
+index 2a3b4c5..6d7e8f9 100644
+--- a/tests/settings.spec.ts
++++ b/tests/settings.spec.ts
+@@ -5,10 +5,16 @@ import { test, expect } from '../fixtures/auth';
+ test.describe('Settings', () => {
+   test('updates notification preferences', async ({ page, settingsPage }) => {
+     await settingsPage.goto();
++    await page.pause();
+     await settingsPage.toggleEmailNotifications();
+     await expect(settingsPage.emailToggle).toBeChecked();
+   });
++
++  test('saves display preferences', async ({ page, settingsPage }) => {
++    await settingsPage.goto();
++    await page.pause();
++    await settingsPage.setTheme('dark');
++    await expect(page.getByRole('main')).toHaveAttribute('data-theme', 'dark');
++  });
+ });

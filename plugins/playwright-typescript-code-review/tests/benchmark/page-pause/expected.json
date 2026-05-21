@@ -1,0 +1,59 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-05-21T00:00:00.000Z",
+    "repository_conventions": [],
+    "findings": [
+      {
+        "id": "f-1",
+        "title": "page.pause() committed in test — will hang CI runner",
+        "severity": "high",
+        "confidence": "high",
+        "category": "reliability",
+        "location": {
+          "file": "tests/settings.spec.ts",
+          "line": 8,
+          "end_line": 8
+        },
+        "evidence": {
+          "summary": "page.pause() added before toggling email notifications",
+          "diff_refs": ["+    await page.pause();"]
+        },
+        "why_it_matters": "page.pause() opens the Playwright Inspector and blocks test execution indefinitely. In CI, this causes the test to hang until the runner's global timeout kills the process, failing the entire suite. It is a debugging tool only and must never be committed.",
+        "suggested_fix": "Remove `await page.pause()`. If you need to debug at this point, use the `--debug` flag when running Playwright locally: `npx playwright test --debug`",
+        "uncertainty_flags": ["inferred-from-api"],
+        "convention_refs": []
+      },
+      {
+        "id": "f-2",
+        "title": "page.pause() committed in test — will hang CI runner",
+        "severity": "high",
+        "confidence": "high",
+        "category": "reliability",
+        "location": {
+          "file": "tests/settings.spec.ts",
+          "line": 14,
+          "end_line": 14
+        },
+        "evidence": {
+          "summary": "page.pause() added before setting dark theme",
+          "diff_refs": ["+    await page.pause();"]
+        },
+        "why_it_matters": "Same as f-1. page.pause() must be removed before merging.",
+        "suggested_fix": "Remove `await page.pause()`.",
+        "uncertainty_flags": ["inferred-from-api"],
+        "convention_refs": []
+      }
+    ],
+    "summary": {
+      "top_risks": [
+        "tests/settings.spec.ts contains two page.pause() calls that will hang the CI runner indefinitely until the global timeout kills the process"
+      ],
+      "assumptions": [],
+      "uncertainties": []
+    }
+  }
+}
