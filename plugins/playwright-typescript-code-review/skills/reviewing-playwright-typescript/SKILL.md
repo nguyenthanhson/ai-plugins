@@ -109,6 +109,7 @@ Flag:
 - Test with more than 12 `await` statements in the body without page object abstraction
 - Test name that describes the action rather than the expected outcome: `test('clicks submit button')` instead of `test('submits form and shows confirmation message')`
 - Describe block nesting deeper than 2 levels
+- Test body containing more than 6 `await` statements where none of them is `await test.step(...)` — structured steps improve Playwright trace viewer output and make failures easier to locate in CI; without step labels, the trace shows a flat list of actions with no context
 
 ### Dead Abstractions
 
