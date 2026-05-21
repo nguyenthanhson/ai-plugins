@@ -1,0 +1,59 @@
+{
+  "review": {
+    "schema_version": "1",
+    "mode": "local",
+    "diff_base": "HEAD",
+    "diff_head": "working-tree",
+    "generated_at": "2026-05-21T00:00:00.000Z",
+    "repository_conventions": [],
+    "findings": [
+      {
+        "id": "f-1",
+        "title": "Floating promise: cartPage.removeItem() not awaited before assertion",
+        "severity": "high",
+        "confidence": "high",
+        "category": "playwright-correctness",
+        "location": {
+          "file": "tests/cart.spec.ts",
+          "line": 11,
+          "end_line": 11
+        },
+        "evidence": {
+          "summary": "cartPage.removeItem() call changed from awaited to unawaited — the removal fires asynchronously and the assertion runs before the item is removed",
+          "diff_refs": ["+    cartPage.removeItem('Widget Pro');"]
+        },
+        "why_it_matters": "Without await, the removeItem() call starts but does not complete before the next line runs. The toContainText assertion executes against the DOM in its pre-removal state, making the test unreliable — it may pass or fail depending on timing.",
+        "suggested_fix": "Restore `await`: `await cartPage.removeItem('Widget Pro');`",
+        "uncertainty_flags": ["inferred-from-api"],
+        "convention_refs": []
+      },
+      {
+        "id": "f-2",
+        "title": "Floating promise: cartPage.applyDiscount() not awaited before assertion",
+        "severity": "high",
+        "confidence": "high",
+        "category": "playwright-correctness",
+        "location": {
+          "file": "tests/cart.spec.ts",
+          "line": 18,
+          "end_line": 18
+        },
+        "evidence": {
+          "summary": "cartPage.applyDiscount() is called without await — the discount may not be applied when the price assertion runs",
+          "diff_refs": ["+    cartPage.applyDiscount();"]
+        },
+        "why_it_matters": "Same issue as f-1. The totalPrice assertion runs before the discount application completes, causing a race condition that produces intermittent failures.",
+        "suggested_fix": "Add `await`: `await cartPage.applyDiscount();`",
+        "uncertainty_flags": ["inferred-from-api"],
+        "convention_refs": []
+      }
+    ],
+    "summary": {
+      "top_risks": [
+        "tests/cart.spec.ts introduces two unawaited Playwright calls that create race conditions — assertions run before the triggered actions complete"
+      ],
+      "assumptions": [],
+      "uncertainties": []
+    }
+  }
+}

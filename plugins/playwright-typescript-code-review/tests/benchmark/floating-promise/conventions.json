@@ -1,0 +1,7 @@
+{
+  "repository_conventions": [],
+  "nearby_context_files": {
+    "tests/cart.spec.ts": ["fixtures/cart.ts", "pages/CartPage.ts"]
+  },
+  "discovery_budget_used": 2
+}

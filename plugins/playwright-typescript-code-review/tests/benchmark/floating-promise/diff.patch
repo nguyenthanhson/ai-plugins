@@ -1,0 +1,20 @@
+diff --git a/tests/cart.spec.ts b/tests/cart.spec.ts
+index 5f6a7b8..9c0d1e2 100644
+--- a/tests/cart.spec.ts
++++ b/tests/cart.spec.ts
+@@ -8,9 +8,15 @@ test.describe('Cart', () => {
+   test('removes item from cart', async ({ page, cartPage }) => {
+     await cartPage.goto();
+-    await cartPage.removeItem('Widget Pro');
+-    await expect(cartPage.itemList).not.toContainText('Widget Pro');
++    cartPage.removeItem('Widget Pro');
++    await expect(cartPage.itemList).not.toContainText('Widget Pro');
+   });
++
++  test('applies discount code', async ({ page, cartPage }) => {
++    await cartPage.goto();
++    await cartPage.enterDiscountCode('SAVE10');
++    cartPage.applyDiscount();
++    await expect(cartPage.totalPrice).toContainText('10% off');
++  });
+ });
