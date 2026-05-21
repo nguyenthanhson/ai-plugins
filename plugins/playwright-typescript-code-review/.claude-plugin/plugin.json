@@ -1,6 +1,6 @@
 {
   "name": "playwright-typescript-code-review",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. Returns structured local findings — never posts to GitHub.",
   "author": {
     "name": "Son Nguyen",

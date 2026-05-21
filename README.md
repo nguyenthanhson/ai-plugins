@@ -8,7 +8,7 @@ Personal Claude Code plugin marketplace for professional work.
 | --- | --- | --- |
 | [atlassian-tools](./plugins/atlassian-tools) | 2.2.3 | Read-only Jira/Confluence access via MCP with deep issue research skill |
 | [personal-software-engineer](./plugins/personal-software-engineer) | 0.2.0 | UX expert, devil's advocate, and software engineering skills |
-| [playwright-typescript-code-review](./plugins/playwright-typescript-code-review) | 0.1.2 | Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. |
+| [playwright-typescript-code-review](./plugins/playwright-typescript-code-review) | 0.2.0 | Repository-aware Playwright TypeScript code reviewer. Discovers local coding standards before reviewing diffs for reliability, maintainability, and correctness. |
 | [claude-retrospective](./plugins/claude-retrospective) | 1.1.1 | Comprehensive analysis of Claude Code sessions to identify successful patterns, problematic areas, and opportunities for improvement. |
 | [codebase-to-course](./plugins/codebase-to-course) | 0.1.0 | Turn any codebase into a beautiful, interactive HTML course for non-technical vibe coders. |
 | [frontend-slides](./plugins/frontend-slides) | 0.1.0 | Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. |

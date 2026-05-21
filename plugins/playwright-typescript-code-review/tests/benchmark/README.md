@@ -14,6 +14,8 @@ Representative Playwright TypeScript diffs for evaluating review quality before 
 | `typescript-typing` | 3 low (typescript-correctness) | Verifies Promise<any> return types are flagged |
 | `convention-mismatch` | 2 high (reliability) | Verifies explicit doc convention violation is flagged |
 | `doc-code-conflict` | 0 findings, 1 uncertainty | Verifies conflicted conventions produce no hard claims |
+| `page-pause` | 2 high (reliability) | Verifies page.pause() debugging artifact is caught |
+| `floating-promise` | 2 high (playwright-correctness) | Verifies unawaited Playwright API calls are flagged |
 
 ## Evaluation Process
 
