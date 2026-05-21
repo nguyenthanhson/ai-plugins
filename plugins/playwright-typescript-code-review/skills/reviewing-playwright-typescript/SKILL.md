@@ -56,7 +56,8 @@ Flag:
 Flag:
 - `await link.click(); await page.waitForNavigation()` — the `waitForNavigation` call after `click` is a race condition; use `await Promise.all([page.waitForNavigation(), link.click()])`
 - Multiple `page.goto()` calls in a single test without documented reason
-- `page.waitForLoadState('networkidle')` before every interaction — Playwright's actionability checks make this redundant
+- `page.waitForLoadState('networkidle')` called before a Playwright action — Playwright's actionability checks already handle waiting; this is redundant
+- `page.waitForLoadState('domcontentloaded')` or `page.waitForLoadState('load')` called immediately before a locator action — locator actionability waits for the element to be ready without needing an explicit load state wait first
 
 ### Test Isolation
 
@@ -69,6 +70,11 @@ Flag:
 
 Flag:
 - `test.retry(n)` applied to a specific test rather than globally via config — unless the discovery context has a `config-retries` convention that documents per-test retries
+
+### Debugging Artifacts
+
+Flag:
+- `await page.pause()` — this opens the Playwright Inspector and blocks test execution indefinitely; it must never appear in committed test code as it will hang the CI runner until timeout
 
 ---
 
