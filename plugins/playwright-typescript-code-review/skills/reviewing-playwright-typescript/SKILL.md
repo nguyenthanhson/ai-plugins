@@ -183,12 +183,11 @@ For each issue found, record:
   },
   "evidence": {
     "summary": "<one sentence describing what the diff shows>",
-    "diff_refs": ["<specific diff line 1 that shows the issue>", "<diff line 2 if applicable>"],
-    "convention_refs": ["<convention id from discovery context if a convention applies, or empty array>"]
+    "diff_refs": ["<specific diff line 1 that shows the issue>", "<diff line 2 if applicable>"]
   },
   "why_it_matters": "<why this matters — specific risk or consequence>",
   "suggested_fix": "<specific code-level suggestion>",
-  "convention_refs": ["<same as evidence.convention_refs>"]
+  "convention_refs": ["<convention id from discovery context if a convention applies, or empty array>"]
 }
 ```
 
