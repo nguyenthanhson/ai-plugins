@@ -57,7 +57,7 @@ If two findings have the same `location.file` and overlapping `location.line`/`l
 
 If there are more than 5 findings with `severity: "low"` or `severity: "note"`:
 - Keep the top 3 by this priority: findings with non-empty `convention_refs` first, then by line number
-- Move the rest to `suppressed_to_uncertainties`: `"[low-severity] <title> (<file>:<line>)"`
+- Move the rest to `suppressed_to_uncertainties`: `"[low-severity] <title> (<location.file>:<location.line>)"`
 
 ## Output
 
